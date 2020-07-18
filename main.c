@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
+
 
 
 int main()
 {
 	int num,b,c,d,u,nac,edd,dia;
     char nom[30],esc[30],mes[10],dicc[40],fac[15],l,pass[10];
-    char enteroACaracter[nac];
 	const char contrasena[]="Uingenierias";
     int po,x,prom, correcto, intento;
     do
@@ -77,7 +76,7 @@ int main()
         
     for(x=1;x<=po;x++) {
 	    printf("Nombre completo:  ");
-	    scanf("%s", &nom);
+	    scanf("%s", nom);
 	    printf("Año de nacimiento: ");
 	    scanf("%ls",&nac);
         
@@ -90,24 +89,24 @@ int main()
         printf("Dia de nacimiento: ");
         scanf("%ls", &dia);
         printf("Mes de nacimiento:  ");
-        scanf("%s", &mes);
+        scanf("%s", mes);
         printf("Edad:  ");
         scanf("%ls", &edd);
         printf("Escuela bachillerato de proveniencia: ");
-        scanf("%s", &esc);
+        scanf("%s", esc);
         printf("Promedio: ");
         scanf("%ls", &prom);
         printf("Direccion de domicilio: ");
-        scanf("%s", &dicc);
+        scanf("%s", dicc);
         printf("Carrera a ingresar: ");
-        scanf("%s", &fac);
+        scanf("%s", fac);
 	    
         printf("\n");
         printf("Tus datos se han guardado correctamente\n\n");
         
         FILE* fp;
 	    fp = fopen("nuevosIngresos.txt", "wtr");
-	    fprintf(fp, "Nombre: %s. \n Nacimiento = Dia: %ls, Mes: %s. \n Año: %ls.\n Edad: %ls.\n Colegio de procedencia: %s \n Promedio: %ls.\n Carrera: %s \n\n", nom, dia, mes, nac, edd, esc,prom, fac);
+	    fprintf(fp, "Nombre: %s. \n Nacimiento = Dia: %d, Mes: %s. \n Año: %d\n Edad: %d.\n Colegio de procedencia: %s \n Promedio: %d.\n Carrera: %s \n\n", nom, dia, mes, nac, edd, esc,prom, fac);
 		fclose(fp);
         system("pause");
         	break;
@@ -119,12 +118,14 @@ int main()
     intento=1;
 	correcto=0;
 	
-	printf("Introduzca la contrasena: "); gets(pass); printf("\n");
+	printf("Introduzca la contrasena: "); 
+	scanf("%s", pass);
+	printf("\n");
 	if (strcmp(pass,contrasena)==0) correcto=1;
 	while ((correcto==0)&&(intento<3)) {
 		intento++;
-	    printf("Contrasena incorrecta. %i intento: ", intento); gets(pass); printf("\n");
-	        
+	    printf("Contrasena incorrecta. %i intento: ", intento); printf("\n");
+	    scanf("%s", pass);
 	    if (strcmp(pass,contrasena)==0) correcto=1;
 	}
 	
@@ -145,21 +146,16 @@ int main()
 		printf("Nuevos ingresos\n\n");
 		FILE *fp;
 		fp = fopen ( "nuevosIngresos.txt", "r" );        
-		if (fp==NULL) {fputs ("No hay nuevos ingresos registrados",stderr); exit (1);}
-		system("pause");
 		fclose ( fp );
 		system("pause");
 		break;
 		}
-				    
-		system("pause");
-		break;
+
 	    }
 
 
     case 5:
     system("cls");
-    getch();
     break;
 
 
