@@ -3,12 +3,11 @@
 #include <string.h>
 #include <conio.h>
 
-FILE* fp;
 
 int main()
 {
 	int num,b,c,d,u,nac,edd,dia;
-    char nom[30],esc,mes,dicc,fac,l,pass[10];
+    char nom[30],esc[30],mes[10],dicc[40],fac[15],l,pass[10];
     char enteroACaracter[nac];
 	const char contrasena[]="Uingenierias";
     int po,x,prom, correcto, intento;
@@ -50,44 +49,54 @@ int main()
 	    case 1:
 	    printf("La ingenieria quimica es una rama de la ingenieria que se encarga del estudio, diseño, manutencion, evaluacion, optimizacion, simulacion, construccion y operacion de todo tipo de elementos\n");
 		system("pause");
-		break;
+        	break;
+		
+		case 2:
+	    printf("La ingenieria electrica es el campo de la ingenieria que se ocupa del estudio y la aplicacion de la electricidad, la electronica y el electromagnetismo\n");
+		system("pause");
+			break;
+		
+		case 3:
+	    printf("La ingenieria industrial es una de las ramas de la ingenieria, y se ocupa de la optimizacion de uso de recursos humanos, tecnicos e informativos, asi como el manejo y gestion optimos de los sistemas\n");
+		system("pause");
+			break;
+		
+		case 4:
+	    printf("La ingenieria en sistemas es una rama interdisciplinaria de la ingenieria que permite estudiar y comprender la realidad, con el proposito de implementar u optimizar sistemas complejos.\n");
+		system("pause");
+			break;
 		}
-    
-    system("cls");
-     break;
+	    system("cls");
+	    	break;
 
 
     case 3:
-        system("cls");
-	    
-		printf("REGISTRO DE ALUMNOS\n\n");
-        printf("Cuantos alumnos quiere registrar\?");
-        scanf("%d", &po);
-        for(x=1;x<=po;x++)
-         {
-        printf("Nombre completo:  ");
-        scanf("%s", &nom);
-        printf("Año de nacimiento: ");
-        scanf("%d",&nac);
+	printf("REGISTRO DE ALUMNOS\n\n");
+    printf("Cuantos alumnos quiere registrar\?");
+    scanf("%d", &po);
         
-        if (nac>2020)
-        {
-        printf("DATOS ERRONESOS,INTENTE DE NUEVO\n");
-                printf("año de nacimiento:  ");
-        scanf("%d",&nac);
+    for(x=1;x<=po;x++) {
+	    printf("Nombre completo:  ");
+	    scanf("%s", &nom);
+	    printf("Año de nacimiento: ");
+	    scanf("%ls",&nac);
+        
+        if (nac>2020) {
+	        printf("DATOS ERRONESOS,INTENTE DE NUEVO\n");
+	            printf("año de nacimiento:  ");
+	        	scanf("%ls",&nac);
         }
 
         printf("Dia de nacimiento: ");
-        scanf("%d", &dia);
+        scanf("%ls", &dia);
         printf("Mes de nacimiento:  ");
         scanf("%s", &mes);
         printf("Edad:  ");
-        scanf("%d", &edd);
+        scanf("%ls", &edd);
         printf("Escuela bachillerato de proveniencia: ");
         scanf("%s", &esc);
         printf("Promedio: ");
-        scanf("%d", &prom);
-
+        scanf("%ls", &prom);
         printf("Direccion de domicilio: ");
         scanf("%s", &dicc);
         printf("Carrera a ingresar: ");
@@ -98,71 +107,64 @@ int main()
         
         FILE* fp;
 	    fp = fopen("nuevosIngresos.txt", "wtr");
-	    fputs(nom, fp);
+	    fprintf(fp, "Nombre: %s. \n Nacimiento = Dia: %ls, Mes: %s. \n Año: %ls.\n Edad: %ls.\n Colegio de procedencia: %s \n Promedio: %ls.\n Carrera: %s \n\n", nom, dia, mes, nac, edd, esc,prom, fac);
 		fclose(fp);
+        system("pause");
+        	break;
+		}
 		
-		printf("Presione cualquier tecla para continuar:  ");
-        scanf("%d",&c);
-        system("cls");
-        break;
-	}
     case 4:
-        system("cls");
-        printf("PORTAL DOCENTE\n\n");
-        intento=1;
-	    correcto=0;
+
+    printf("PORTAL DOCENTE\n\n");
+    intento=1;
+	correcto=0;
 	
-	    printf("Introduzca la contrasena: "); gets(pass); printf("\n");
-	    if (strcmp(pass,contrasena)==0) correcto=1;
-	    while ((correcto==0)&&(intento<3))
-	    {
-			intento++;
-	        printf("Contrasena incorrecta. %i intento: ", intento); gets(pass); printf("\n");
+	printf("Introduzca la contrasena: "); gets(pass); printf("\n");
+	if (strcmp(pass,contrasena)==0) correcto=1;
+	while ((correcto==0)&&(intento<3)) {
+		intento++;
+	    printf("Contrasena incorrecta. %i intento: ", intento); gets(pass); printf("\n");
 	        
-	        if (strcmp(pass,contrasena)==0) correcto=1;
-	    }
+	    if (strcmp(pass,contrasena)==0) correcto=1;
+	}
 	
-	    if (correcto==0) printf("Se han excedido el numero de intentos.");
-	    else
-	        {
-	            printf("Bienvenido profesor\n\n");
-	                system("cls");
-				    printf("Seleccione su carrera \n");
-				    printf("1)Ingenieria Quimica\n\n");
-				    printf("2)Ingenieria Electrica\n\n");
-				    printf("3)Ingenieria Industrial\n\n");
-				    printf("4)Ingenieria En Sistemas\n\n");
-				    printf( "Presione su opcion para continuar: ");
-				    scanf("%d",&b);
+	if (correcto==0) printf("Se han excedido el numero de intentos.");
+	else {
+	    printf("Bienvenido profesor\n\n");
+	    system("cls");
+		printf("1)Ver nuevos Ingresos\n\n");
+		printf("2)Ingenieria Electrica\n\n");
+		printf("3)Ingenieria Industrial\n\n");
+		printf("4)Ingenieria En Sistemas\n\n");
+		printf( "Presione su opcion para continuar: ");
+		scanf("%d",&b);
 				    
-					    switch(b)
-					    {
-					    case 1:
-						printf("Nuevos ingresos\n\n");
-						FILE *fp;
-						fp = fopen ( "nuevosIngresos.txt", "r" );        
-						if (fp==NULL) {fputs ("No hay nuevos ingresos registrados",stderr); exit (1);}
-						system("pause");
-						fclose ( fp );
-						system("pause");
-						break;
-						}
+		switch(b)
+		{
+		case 1:
+		printf("Nuevos ingresos\n\n");
+		FILE *fp;
+		fp = fopen ( "nuevosIngresos.txt", "r" );        
+		if (fp==NULL) {fputs ("No hay nuevos ingresos registrados",stderr); exit (1);}
+		system("pause");
+		fclose ( fp );
+		system("pause");
+		break;
+		}
 				    
-				    system("cls");
-				     break;
-	        }
+		system("pause");
+		break;
+	    }
 
 
     case 5:
-       system("cls");
-       getch();
-        break;
+    system("cls");
+    getch();
+    break;
 
 
 
-
-
-     case 0:
+    case 0:
     default:
     printf("ESTA OPCION ES DESCONOCIDA\n\n");
     break;
